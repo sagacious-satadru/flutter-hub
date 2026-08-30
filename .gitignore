@@ -1,0 +1,9 @@
+# Root-level ignores for this monorepo.
+# Each project subfolder (birdle/, wikipedia_reader/, ...) has its own
+# .gitignore for Flutter/Dart build artifacts.
+
+.DS_Store
+Thumbs.db
+
+# Personal working notes, not meant for the public repo
+complete_learning_methodology_guide.md
