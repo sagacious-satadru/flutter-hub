@@ -13,11 +13,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: const Center(
-            child: Text("Birdle"),
-          ),
-        ),
+        appBar: AppBar(title: const Center(child: Text("Birdle"))),
         body: const Center(child: GamePage()),
       ),
     );
@@ -76,9 +72,9 @@ class _GamePageState extends State<GamePage> {
         _game.guess(guess);
       });
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('"$guess" is not a valid word!')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('"$guess" is not a valid word!')));
     }
   }
 
@@ -94,9 +90,12 @@ class _GamePageState extends State<GamePage> {
               children: [
                 for (var letter in guess)
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 2.5, vertical: 2.5),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 2.5,
+                      vertical: 2.5,
+                    ),
                     child: Tile(letter.char, letter.type),
-                  )
+                  ),
               ],
             ),
           const SizedBox(height: 20),
@@ -137,7 +136,7 @@ class _GuessInputState extends State<GuessInput> {
   void _handleSubmit() {
     final text = _textEditingController.text.trim();
     if (text.isEmpty) return;
-    
+
     widget.onSubmitGuess(text);
     _textEditingController.clear();
     _focusNode.requestFocus();
@@ -166,7 +165,7 @@ class _GuessInputState extends State<GuessInput> {
           ),
         ),
         IconButton(
-          onPressed: _handleSubmit,
+          onPressed: () => _handleSubmit(),
           icon: const Icon(Icons.arrow_circle_up, size: 40),
           color: Theme.of(context).primaryColor,
         ),
